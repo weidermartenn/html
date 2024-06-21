@@ -1,0 +1,230 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Добавлено для корректного расчета размеров элементов */
+}
+
+hmtl, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Overpass', sans-serif;
+}
+
+html::-webkit-scrollbar { 
+    background-color: #252525;
+    border-radius: 5px;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: #4d4d4d;
+    border-radius: 5px;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden; /* Отключение скролла у body */
+    background-color: #353C41;
+}
+
+.stand {
+    display: flex;
+    gap: 20px;
+    background-color: silver;
+    max-width: 100%; /* Максимальная ширина контейнера, чтобы не выходил за экран */
+    height: 800px; /* Высота контейнера остаётся фиксированной */
+    border-radius: 5px;
+    padding: 20px;
+    overflow-x: auto; /* Включение горизонтального скролла */
+    overflow-y: hidden; /* Отключение вертикального скролла */
+    white-space: wrap; /* Предотвращение переноса строк внутри .stand */
+}
+
+.stand::-webkit-scrollbar { 
+    background-color: #252525;
+    border-radius: 5px;
+}
+
+.stand::-webkit-scrollbar-thumb {
+    background-color: #4d4d4d;
+    border-radius: 5px;
+}
+
+
+.stand-block {
+    display: flex; /* Блоки становятся инлайновыми для правильного расположения */
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+    border: #262626 solid 1px;
+    width: 500px; /* Ширина блока остаётся фиксированной */
+    height: 750px; /* Высота блока остаётся фиксированной */
+    background-image: linear-gradient(45deg, #CECECE, #686868);
+    position: relative;
+    box-shadow: -5px 0px 0px rgba(0, 0, 0, 0.2);
+    white-space: normal; /* Возврат к обычному переносу строк внутри блока */
+}
+
+.stand-block__title {
+    font-size: 28px;
+    color: #2c2c2c;
+    margin-top: 10px; /* Добавлен отступ сверху для заголовка */
+}
+
+.gauge-container {
+    background-image: linear-gradient(45deg, #ffffff, #acacac);
+    width: 200px;
+    height: 140px;
+    display: flex;
+    margin-bottom: 50px;
+    justify-content: center;
+    align-items: center;
+    border: #252525 solid 3px;
+}
+
+.gauge {
+    width: 200px;
+    height: 120px;
+}
+
+.scroll-container {
+    display: flex;
+    gap: 20px;
+    width: 100%; /* Ширина контейнера для скролла равна ширине экрана */
+    overflow-x: auto; /* Включение горизонтального скролла */
+    padding: 10px;
+}
+
+.stand-block__column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 200px; /* Ширина колонки остаётся фиксированной */
+    height: 400px; /* Высота колонки остаётся фиксированной */
+    border: 2px dashed #262626;
+}
+
+.switch-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.image-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.lamp {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: red; /* Красный цвет по умолчанию */
+    border-radius: 50%;
+    transition: background-color 0.2s; /* Плавный переход */
+}
+
+.switch {
+    display: inline-block;
+    position: relative;
+    width: 55px;
+    height: 40px;
+}
+
+.switch__input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.switch__slider {
+    position: absolute;
+    cursor: pointer;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-left: 15px;
+    background-color: #1f1f1f;
+}
+
+.switch__slider::before {
+    content: "";
+    position: absolute;
+    cursor: pointer;
+    border-radius: 5px;
+    left: 5px;
+    bottom: 15px;
+    width: 30px;
+    height: 10px;
+    background-color: #818181;
+    transition: transform 0.2s; /* Плавный переход */
+}
+
+.switch__input:checked + .switch__slider::before {
+    transform: rotate(90deg);
+}
+
+.switch__input:checked ~ .lamp {
+    background-color: rgb(7, 255, 7);
+}
+
+.switch-container {
+    background-image: linear-gradient(45deg, #494949, #6d6b6b);
+    width: 60px;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center; /* Центрирование по вертикали */
+}
+
+.meter {
+    background-image: linear-gradient(45deg, #494949, #6d6b6b);
+    margin-top: 20px;
+    width: 120px;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 3px 0px #252525;
+}
+
+.meter span {
+    display: inline-block;
+    width: 100px;
+    height: 90%;
+    background-color: #052008;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 45px;
+    color: #00B512;
+    font-size: 16px;
+    font-family: 'Press Start 2P';
+    box-shadow: inset 0 0 2px #00B512;
+}
+
+.dep-name {
+    background-image: linear-gradient(45deg, #494949, #6d6b6b);
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #c4c4c4;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#tp-5 .scroll-container::-webkit-scrollbar {
+    display: none;
+}

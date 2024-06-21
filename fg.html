@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Диаграмма с jsPlumb</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.15.6/js/jsplumb.min.js"></script>
+    <style>
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .block {
+            width: 100px;
+            height: 100px;
+            background-color: lightblue;
+            border: 1px solid blue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+        }
+        #block1 {
+            top: 30%;
+            left: 40%;
+        }
+        #block2 {
+            top: 50%;
+            left: 60%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="block1" class="block">Block 1</div>
+    <div id="block2" class="block">Block 2</div>
+</div>
+
+<script>
+    jsPlumb.ready(function() {
+        var instance = jsPlumb.getInstance({
+            Connector: "Flowchart",
+            PaintStyle: { stroke: "blue", strokeWidth: 2 },
+            Endpoint: ["Dot", { radius: 5 }],
+            EndpointStyle: { fill: "blue" },
+            Container: "container"
+        });
+    
+        instance.connect({
+            source: "block1",
+            target: "block2",
+            anchors: ["Right", "Left"]
+        });
+    });
+</script>
+
+</body>
+</html>
